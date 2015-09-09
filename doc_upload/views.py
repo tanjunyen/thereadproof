@@ -9,7 +9,7 @@ def file_upload(request):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST' :
-        form = FileUploadForms(request.POST)
+        form = FileUploadForms(request.POST, request.FILES)
         if form.is_valid():
             sender_name = form.cleaned_data['name']
             #sender_email = form.cleaned_data['email']
