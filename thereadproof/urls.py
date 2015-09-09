@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^user/', include('usermanagement.urls')),
     url(r'^doc_upload/', include('doc_upload.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]

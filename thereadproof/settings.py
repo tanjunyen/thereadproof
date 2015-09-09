@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'doc_upload',
+    'usermanagement',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'thereadproof.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'doc_upload/templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'doc_upload/templates'),
+            os.path.join(BASE_DIR, 'usermanagement/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
