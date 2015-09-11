@@ -4,4 +4,4 @@ from .models import Job
 class FileUploadForms(ModelForm):
     class Meta:
         model = Job
-        fields = ['name', 'email', 'description', 'file']
+        exclude = ['user']

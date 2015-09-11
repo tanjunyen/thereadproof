@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
 class Job(models.Model):
-    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User)
     email = models.EmailField()
     description = models.CharField(max_length=1000)
     file = models.FileField(upload_to='files_to_proofread')

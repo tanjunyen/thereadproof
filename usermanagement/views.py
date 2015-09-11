@@ -5,7 +5,8 @@ from django.template import Context
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.contrib.auth.forms import UserCreationForm
-from django.template import RequestContext
+from doc_upload.forms import FileUploadForms
+from doc_upload.models import Job
 # Create your views here.
 
 def index(request):
@@ -49,8 +50,30 @@ def registration(request):
     args.update(csrf(request))
 
     args['form'] = UserCreationForm()
-    #print args
     return render_to_response('register.html', args)
 
 def register_success(request):
     return render_to_response('register_success.html')
+
+def doc_upload(request):
+    c = {}
+    c.update(csrf(request))
+    current_user = request.user
+
+    if request.method == 'POST' :
+
+        form = FileUploadForms(request.POST, request.FILES)
+
+        if form.is_valid():
+            job = Job(
+                user = current_user,
+                email = form.cleaned_data['email'],
+                description = form.cleaned_data['description'],
+                file = form.cleaned_data['file'],
+            )
+            job.save()
+
+            return HttpResponse("Thanks " + current_user.username + " for submitting your form")
+    else:
+        form = FileUploadForms()
+    return render(request, 'doc_upload.html', {'form': form, 'full_name' : current_user.username })
