@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+{% endblock %}
+{% block sidebar %}
+<ul class="subnavilist">
+    <li><a href="{% url 'user_doc_upload' %}">Upload documents</a></li>
+    <li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
+    <li><a href="{% url 'messages_outbox' %} ">{% trans "Outbox" %}</a></li>
+    <li><a href="{% url 'messages_compose' %} ">{% trans "Compose" %}</a></li>
+    <li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+</ul>
+{% endblock %}
+

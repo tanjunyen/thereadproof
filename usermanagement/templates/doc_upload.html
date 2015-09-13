@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+<ul class="">
+    <li><a href="{% url 'user_doc_upload' %}">Upload documents</a></li>
+    <li><a href="{% url 'messages_inbox' %}">Inbox</a></li>
+    <li><a href="{% url 'messages_outbox' %}">Outbox</a></li>
+    <li><a href="{% url 'messages_compose' %}">Compose</a></li>
+    <li><a href="{% url 'messages_trash' %}">Trash</a></li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Hi {{ full_name }} you are now logged in!</h2>
+    <p>Click <a href="{% url 'user_account_logout' %}">here</a> to logout</p>
+
+    <form action="{% url 'user_doc_upload' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}
+
+
+
+
+
